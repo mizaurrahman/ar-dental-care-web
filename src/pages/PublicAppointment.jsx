@@ -272,6 +272,7 @@ function ClinicBanner({ doctor, compact = false }) {
       )}
     </div>
   )
+}
 
 function DoctorAvatar({ doctor }) {
   if (doctor?.avatar_url) {
