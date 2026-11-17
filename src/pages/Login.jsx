@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { getErrorMessage } from '../lib/api'
+import { getErrorMessage, warmApi } from '../lib/api'
 
 export default function Login() {
   const { login } = useAuth()
@@ -10,18 +10,38 @@ export default function Login() {
   const [show, setShow] = useState(false)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+  const [apiReady, setApiReady] = useState(false)
+  const [warming, setWarming] = useState(true)
+
+  useEffect(() => {
+    let alive = true
+    setWarming(true)
+    warmApi().then((ok) => {
+      if (!alive) return
+      setApiReady(ok)
+      setWarming(false)
+    })
+    return () => { alive = false }
+  }, [])
 
   async function onSubmit(e) {
     e.preventDefault()
     setBusy(true)
     setError('')
     try {
+      if (!apiReady) {
+        setWarming(true)
+        await warmApi()
+        setApiReady(true)
+        setWarming(false)
+      }
       await login(form.login, form.password)
       navigate('/')
     } catch (err) {
       setError(getErrorMessage(err, 'Login failed'))
     } finally {
       setBusy(false)
+      setWarming(false)
     }
   }
 
@@ -48,7 +68,15 @@ export default function Login() {
           <h1 className="text-3xl font-extrabold text-[var(--navy)] sm:text-4xl">Login</h1>
           <p className="mt-2 text-sm text-[var(--muted)]">Enter your credentials to login to your account</p>
 
-          <form className="mt-8 space-y-4" onSubmit={onSubmit}>
+          {(warming || busy) && (
+            <div className="mt-4 rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-800">
+              {warming && !busy
+                ? 'Connecting to server… free hosting may take up to a minute after idle.'
+                : 'Signing in… if this is the first request after idle, please wait.'}
+            </div>
+          )}
+
+          <form className="mt-6 space-y-4" onSubmit={onSubmit}>
             <div>
               <label className="label">Email or BD phone</label>
               <input className="input" value={form.login} onChange={(e) => setForm({ ...form, login: e.target.value })} placeholder="doctor@ardental.local" />
@@ -68,7 +96,9 @@ export default function Login() {
               </div>
             </div>
             {error && <div className="rounded-xl bg-red-50 px-3 py-2 text-sm text-red-600">{error}</div>}
-            <button className="btn-primary w-full" disabled={busy}>{busy ? 'Signing in…' : 'Sign In'}</button>
+            <button className="btn-primary w-full" disabled={busy}>
+              {busy ? 'Signing in…' : 'Sign In'}
+            </button>
           </form>
 
           <p className="mt-6 text-sm text-[var(--muted)]">
