@@ -42,6 +42,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Public appointment / shareable booking page */
+.public-appt {
+  background:
+    radial-gradient(900px 420px at 0% 0%, rgba(47, 111, 237, 0.14), transparent 55%),
+    radial-gradient(700px 380px at 100% 10%, rgba(15, 27, 45, 0.08), transparent 50%),
+    linear-gradient(180deg, #e8eef8 0%, var(--page) 45%, #e9eef6 100%);
+}
+
 h1, h2, h3, .brand {
   font-family: "Plus Jakarta Sans", "DM Sans", sans-serif;
   letter-spacing: -0.02em;
