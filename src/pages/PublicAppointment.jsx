@@ -116,30 +116,32 @@ export default function PublicAppointment() {
         <aside className="overflow-hidden rounded-[28px] bg-white shadow-xl ring-1 ring-slate-200/70">
           <ClinicBanner doctor={doctor} />
 
-          <div className="relative px-5 pb-6 pt-0 sm:px-7">
-            <div className="-mt-10 mb-4 flex items-end gap-4">
+          <div className="relative px-6 pb-7 pt-0 sm:px-7 md:px-8">
+            {/* Avatar overlaps banner; title stacks below so nothing collides */}
+            <div className="-mt-11 mb-5 sm:-mt-12">
               <DoctorAvatar doctor={doctor} />
-              <div className="min-w-0 flex-1 pb-1">
-                <h1 className="truncate text-2xl font-extrabold leading-tight text-[var(--navy)] sm:text-3xl">
-                  {clinicTitle}
-                </h1>
-                <p className="mt-0.5 truncate text-base font-semibold text-slate-700">{doctor?.name || '…'}</p>
-              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <h1 className="text-2xl font-extrabold leading-snug text-[var(--navy)] sm:text-[1.75rem]">
+                {clinicTitle}
+              </h1>
+              <p className="text-base font-semibold text-slate-700">{doctor?.name || '…'}</p>
             </div>
 
             {doctor?.specialty && (
-              <p className="text-sm font-medium text-[var(--blue)]">{doctor.specialty}</p>
+              <p className="mt-3 text-sm font-medium text-[var(--blue)]">{doctor.specialty}</p>
             )}
             {doctor?.qualifications && (
-              <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">{doctor.qualifications}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-[var(--muted)]">{doctor.qualifications}</p>
             )}
             {doctor?.bmdc_reg && (
-              <p className="mt-2 inline-flex rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+              <p className="mt-3 inline-flex rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
                 BMDC {doctor.bmdc_reg}
               </p>
             )}
 
-            <div className="mt-5 space-y-3 border-t border-slate-100 pt-5 text-sm">
+            <div className="mt-6 space-y-3.5 border-t border-slate-100 pt-5 text-sm">
               {doctor?.clinic_address && (
                 <InfoRow label="Clinic" value={doctor.clinic_address} />
               )}
@@ -158,16 +160,16 @@ export default function PublicAppointment() {
               )}
             </div>
 
-            <p className="mt-6 text-xs text-[var(--muted)]">
+            <p className="mt-6 text-xs leading-relaxed text-[var(--muted)]">
               Pick an open day and free time — occupied slots are hidden automatically.
             </p>
           </div>
         </aside>
 
         {/* Booking panel */}
-        <section className="rounded-[28px] bg-white p-5 shadow-xl ring-1 ring-slate-200/70 sm:p-6 md:p-7">
+        <section className="rounded-[28px] bg-white p-6 shadow-xl ring-1 ring-slate-200/70 sm:p-7 md:p-8">
           <div className="flex flex-wrap items-start justify-between gap-3">
-            <div>
+            <div className="min-w-0 flex-1">
               <h2 className="text-xl font-extrabold text-[var(--navy)]">Select date & time</h2>
               <p className="mt-1 text-sm text-[var(--muted)]">Only open days and free times are shown.</p>
             </div>
@@ -175,7 +177,7 @@ export default function PublicAppointment() {
               <img
                 src={doctor.logo_url}
                 alt=""
-                className="hidden h-10 w-auto max-w-[120px] object-contain opacity-80 sm:block"
+                className="hidden h-9 w-auto max-w-[100px] shrink-0 object-contain opacity-70 sm:block"
               />
             )}
           </div>
@@ -234,7 +236,7 @@ export default function PublicAppointment() {
 
 function ClinicBanner({ doctor, compact = false }) {
   const hasLogo = Boolean(doctor?.logo_url)
-  const height = compact ? 'h-28' : 'h-40 sm:h-48'
+  const height = compact ? 'h-28' : 'h-36 sm:h-40'
 
   return (
     <div className={`relative ${height} overflow-hidden bg-[var(--navy)]`}>
@@ -243,20 +245,20 @@ function ClinicBanner({ doctor, compact = false }) {
           <img
             src={doctor.logo_url}
             alt=""
-            className="absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-xl"
+            className="absolute inset-0 h-full w-full scale-110 object-cover opacity-30 blur-xl"
             aria-hidden
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy)]/80 via-[var(--navy-soft)]/70 to-[var(--blue)]/50" />
-          <div className="relative z-[1] flex h-full items-center justify-center p-6">
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy)]/85 via-[var(--navy-soft)]/75 to-[var(--blue)]/45" />
+          <div className="relative z-[1] flex h-full items-center justify-center px-8 py-6">
             <img
               src={doctor.logo_url}
               alt={doctor?.clinic_name || 'Clinic logo'}
-              className={`${compact ? 'max-h-14' : 'max-h-20 sm:max-h-24'} max-w-[70%] object-contain drop-shadow-lg`}
+              className={`${compact ? 'max-h-12' : 'max-h-16 sm:max-h-20'} max-w-[65%] object-contain drop-shadow-lg`}
             />
           </div>
         </>
       ) : (
-        <div className="flex h-full flex-col justify-between bg-gradient-to-br from-[var(--navy)] via-[var(--navy-soft)] to-[var(--blue)] p-5 sm:p-6">
+        <div className="flex h-full flex-col justify-between bg-gradient-to-br from-[var(--navy)] via-[var(--navy-soft)] to-[var(--blue)] px-6 py-5 sm:px-7 sm:py-6">
           <div className="brand text-sm font-bold text-white/90">AR Dental Care</div>
           <div>
             <div className={`${compact ? 'text-lg' : 'text-2xl sm:text-3xl'} font-extrabold text-white`}>
@@ -270,7 +272,6 @@ function ClinicBanner({ doctor, compact = false }) {
       )}
     </div>
   )
-}
 
 function DoctorAvatar({ doctor }) {
   if (doctor?.avatar_url) {
@@ -278,14 +279,14 @@ function DoctorAvatar({ doctor }) {
       <img
         src={doctor.avatar_url}
         alt={doctor?.name || 'Doctor'}
-        className="h-20 w-20 shrink-0 rounded-2xl object-cover shadow-lg ring-4 ring-white sm:h-24 sm:w-24"
+        className="h-[88px] w-[88px] rounded-2xl object-cover shadow-lg ring-[3px] ring-white sm:h-24 sm:w-24"
       />
     )
   }
 
   return (
     <div
-      className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-[var(--blue-soft)] text-lg font-extrabold text-[var(--blue)] shadow-lg ring-4 ring-white sm:h-24 sm:w-24 sm:text-xl"
+      className="grid h-[88px] w-[88px] place-items-center rounded-2xl bg-[var(--blue-soft)] text-lg font-extrabold text-[var(--blue)] shadow-lg ring-[3px] ring-white sm:h-24 sm:w-24 sm:text-xl"
       aria-hidden
     >
       {initials(doctor?.name)}
@@ -295,9 +296,9 @@ function DoctorAvatar({ doctor }) {
 
 function InfoRow({ label, value }) {
   return (
-    <div className="grid grid-cols-[72px_1fr] gap-2 sm:grid-cols-[88px_1fr]">
-      <div className="text-xs font-bold uppercase tracking-wide text-slate-400">{label}</div>
-      <div className="text-slate-700">{value}</div>
+    <div className="grid grid-cols-[4.5rem_1fr] items-start gap-x-3 sm:grid-cols-[5rem_1fr] sm:gap-x-4">
+      <div className="pt-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-400">{label}</div>
+      <div className="min-w-0 break-words text-slate-700">{value}</div>
     </div>
   )
 }
