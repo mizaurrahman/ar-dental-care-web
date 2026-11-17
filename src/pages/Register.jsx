@@ -55,8 +55,8 @@ export default function Register() {
   }
 
   return (
-    <div className="grid min-h-screen place-items-center p-4">
-      <div className="page-enter grid w-full max-w-5xl overflow-hidden rounded-[28px] bg-white shadow-2xl md:grid-cols-2">
+    <div className="grid min-h-screen place-items-center p-3 sm:p-4">
+      <div className="page-enter grid w-full max-w-5xl overflow-hidden rounded-[22px] bg-white shadow-2xl sm:rounded-[28px] md:grid-cols-2">
         <div className="hidden bg-[var(--blue)] p-10 text-white md:flex md:flex-col md:justify-center">
           <div className="brand text-2xl font-extrabold">AR Dental Care</div>
           <h2 className="mt-6 text-3xl font-bold">Register your own clinic</h2>
@@ -64,8 +64,8 @@ export default function Register() {
             Every doctor gets a private dashboard, clinic profile, and a unique appointment link with QR code.
           </p>
         </div>
-        <div className="max-h-[90vh] overflow-auto p-8 md:p-10">
-          <h1 className="text-3xl font-extrabold text-[var(--navy)]">Sign Up</h1>
+        <div className="max-h-[min(92vh,920px)] overflow-auto p-5 sm:p-8 md:p-10">
+          <h1 className="text-2xl font-extrabold text-[var(--navy)] sm:text-3xl">Sign Up</h1>
           <p className="mt-1 text-sm text-[var(--muted)]">Create your clinic account — not shared with other doctors.</p>
 
           <div className="mt-4 flex gap-2">

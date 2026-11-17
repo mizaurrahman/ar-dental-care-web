@@ -76,9 +76,9 @@ export default function MedicinePickerModal({ onClose, onAddMany }) {
   const canQueue = !!(selected?.brand_name || q.trim())
 
   return (
-    <div className="modal-backdrop fixed inset-0 z-50 grid place-items-center bg-slate-900/45 p-3 backdrop-blur-[2px]" onClick={onClose}>
+    <div className="modal-backdrop fixed inset-0 z-50 grid place-items-end bg-slate-900/45 p-0 backdrop-blur-[2px] sm:place-items-center sm:p-3" onClick={onClose}>
       <div
-        className="modal-panel flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+        className="modal-panel flex max-h-[94vh] w-full max-w-4xl flex-col overflow-hidden rounded-t-2xl bg-white shadow-2xl sm:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3">

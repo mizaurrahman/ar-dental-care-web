@@ -48,8 +48,8 @@ export default function Dashboard() {
   return (
     <div className="page-enter space-y-3">
       <div className="fade-up">
-        <h1 className="text-2xl font-extrabold text-[var(--navy)] md:text-3xl">{greeting}, {user?.name}</h1>
-        <p className="text-sm text-[var(--muted)]">Here is what is happening at AR Dental Care today.</p>
+        <h1 className="text-xl font-extrabold leading-tight text-[var(--navy)] sm:text-2xl md:text-3xl">{greeting}, {user?.name}</h1>
+        <p className="mt-1 text-sm text-[var(--muted)]">Here is what is happening at your clinic today.</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">

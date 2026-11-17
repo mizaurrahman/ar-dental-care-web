@@ -9,9 +9,9 @@ export default function PrescriptionPad({
   return (
     <div className="overflow-hidden rounded-2xl border border-orange-200/80 bg-white shadow-[0_16px_40px_rgba(249,115,22,0.08)]">
       <div className="grid gap-4 bg-gradient-to-r from-orange-50 via-white to-orange-50/40 p-4 md:grid-cols-[1.2fr_0.8fr] md:p-5">
-        <div>
+        <div className="min-w-0">
           <div className="text-xl font-extrabold text-orange-600 md:text-2xl">{doctor?.clinic_name || 'AR Dental Care'}</div>
-          <div className="mt-1 text-sm text-slate-600">{doctor?.clinic_address}</div>
+          <div className="mt-1 break-words text-sm text-slate-600">{doctor?.clinic_address}</div>
           <div className="text-sm text-slate-600">Mobile: {doctor?.clinic_phone}</div>
           {doctor?.visiting_hours && (
             <div className="mt-2 inline-block rounded-lg border border-orange-300 bg-orange-50 px-2.5 py-1.5 text-[11px] font-semibold text-orange-700">
@@ -19,38 +19,38 @@ export default function PrescriptionPad({
             </div>
           )}
         </div>
-        <div className="text-right">
-          {doctor?.logo_url && <img src={doctor.logo_url} alt="" className="ml-auto mb-2 h-10 object-contain" />}
+        <div className="min-w-0 text-left md:text-right">
+          {doctor?.logo_url && <img src={doctor.logo_url} alt="" className="mb-2 h-10 object-contain md:ml-auto" />}
           <div className="text-lg font-extrabold text-orange-600 md:text-xl">{doctor?.name}</div>
           <div className="text-sm font-semibold text-slate-700">{doctor?.specialty}</div>
-          <div className="text-xs text-slate-500">{doctor?.qualifications}</div>
+          <div className="break-words text-xs text-slate-500">{doctor?.qualifications}</div>
           <div className="text-xs text-slate-500">BMDC: {doctor?.bmdc_reg}</div>
         </div>
       </div>
 
-      <div className="grid gap-2 bg-[#2f6fed] px-4 py-2.5 text-sm text-white md:grid-cols-3">
-        <div className="flex items-center gap-2">
-          <span className="opacity-80">Name:</span>
+      <div className="grid gap-2 bg-[#2f6fed] px-3 py-2.5 text-sm text-white sm:px-4 md:grid-cols-3">
+        <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+          <span className="shrink-0 opacity-80">Name:</span>
           {readOnly ? form.patient?.name : (
-            <input className="min-w-0 flex-1 rounded-md px-2 py-1 text-slate-900" value={form.patient?.name || ''} onChange={(e) => setForm({ ...form, patient: { ...form.patient, name: e.target.value } })} />
+            <input className="min-w-0 w-full flex-1 rounded-md px-2 py-1.5 text-slate-900 sm:py-1" value={form.patient?.name || ''} onChange={(e) => setForm({ ...form, patient: { ...form.patient, name: e.target.value } })} />
           )}
         </div>
-        <div className="flex items-center gap-2">
-          <span className="opacity-80">Age:</span>
+        <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+          <span className="shrink-0 opacity-80">Age:</span>
           {readOnly ? (form.patient_age || '—') : (
-            <input className="w-16 rounded-md px-2 py-1 text-slate-900" value={form.patient_age || ''} onChange={(e) => setForm({ ...form, patient_age: e.target.value })} />
+            <input className="w-full rounded-md px-2 py-1.5 text-slate-900 sm:w-16 sm:py-1" value={form.patient_age || ''} onChange={(e) => setForm({ ...form, patient_age: e.target.value })} />
           )}
         </div>
-        <div className="flex items-center gap-2">
-          <span className="opacity-80">Date:</span>
+        <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+          <span className="shrink-0 opacity-80">Date:</span>
           {readOnly ? form.prescribed_on : (
-            <input type="date" className="rounded-md px-2 py-1 text-slate-900" value={form.prescribed_on || ''} onChange={(e) => setForm({ ...form, prescribed_on: e.target.value })} />
+            <input type="date" className="w-full rounded-md px-2 py-1.5 text-slate-900 sm:w-auto sm:py-1" value={form.prescribed_on || ''} onChange={(e) => setForm({ ...form, prescribed_on: e.target.value })} />
           )}
         </div>
       </div>
 
-      <div className="grid min-h-[380px] md:grid-cols-[0.9fr_1.1fr]">
-        <div className="space-y-3 border-r border-blue-100 p-4">
+      <div className="grid min-h-[320px] md:min-h-[380px] md:grid-cols-[0.9fr_1.1fr]">
+        <div className="space-y-3 border-b border-blue-100 p-4 md:border-b-0 md:border-r">
           {[
             ['chief_complaints', 'C/C'],
             ['on_examination', 'O/E'],

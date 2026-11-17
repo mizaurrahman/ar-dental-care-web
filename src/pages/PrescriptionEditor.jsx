@@ -139,7 +139,7 @@ export default function PrescriptionEditor() {
       {message && <div className="no-print alert-ok">{message}</div>}
       {error && <div className="no-print alert-error">{error}</div>}
 
-      <div className="no-print card grid gap-2 p-3 md:grid-cols-4">
+      <div className="no-print card grid gap-2 p-3 sm:grid-cols-2 md:grid-cols-4">
         <input className="input" placeholder="Patient name" value={form.patient.name} onChange={(e) => setForm({ ...form, patient: { ...form.patient, name: e.target.value } })} />
         <input className="input" placeholder="BD phone" value={form.patient.phone} onChange={(e) => setForm({ ...form, patient: { ...form.patient, phone: e.target.value } })} />
         <input className="input" placeholder="Email" value={form.patient.email} onChange={(e) => setForm({ ...form, patient: { ...form.patient, email: e.target.value } })} />

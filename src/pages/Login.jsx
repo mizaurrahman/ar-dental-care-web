@@ -26,8 +26,8 @@ export default function Login() {
   }
 
   return (
-    <div className="grid min-h-screen place-items-center p-4">
-      <div className="page-enter grid w-full max-w-5xl overflow-hidden rounded-[28px] bg-white shadow-2xl md:grid-cols-2">
+    <div className="grid min-h-screen place-items-center p-3 sm:p-4">
+      <div className="page-enter grid w-full max-w-5xl overflow-hidden rounded-[22px] bg-white shadow-2xl sm:rounded-[28px] md:grid-cols-2">
         <div className="relative hidden md:block">
           <div
             className="h-1/2 bg-cover bg-center"
@@ -43,9 +43,9 @@ export default function Login() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center p-8 md:p-12">
-          <div className="brand mb-2 text-lg font-bold text-[var(--blue)]">AR Dental Care</div>
-          <h1 className="text-4xl font-extrabold text-[var(--navy)]">Login</h1>
+        <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12">
+          <div className="brand mb-2 text-base font-bold text-[var(--blue)] sm:text-lg">AR Dental Care</div>
+          <h1 className="text-3xl font-extrabold text-[var(--navy)] sm:text-4xl">Login</h1>
           <p className="mt-2 text-sm text-[var(--muted)]">Enter your credentials to login to your account</p>
 
           <form className="mt-8 space-y-4" onSubmit={onSubmit}>

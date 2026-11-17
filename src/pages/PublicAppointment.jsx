@@ -167,7 +167,7 @@ export default function PublicAppointment() {
         </aside>
 
         {/* Booking panel */}
-        <section className="rounded-[28px] bg-white p-6 shadow-xl ring-1 ring-slate-200/70 sm:p-7 md:p-8">
+        <section className="rounded-[22px] bg-white p-4 shadow-xl ring-1 ring-slate-200/70 sm:rounded-[28px] sm:p-7 md:p-8">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
               <h2 className="text-xl font-extrabold text-[var(--navy)]">Select date & time</h2>

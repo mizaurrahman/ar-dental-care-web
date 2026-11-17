@@ -30,6 +30,10 @@ html, body, #root {
   min-height: 100%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   font-family: "DM Sans", system-ui, sans-serif;
@@ -40,6 +44,21 @@ body {
   color: #111827;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.mobile-tabbar {
+  padding-bottom: max(0.45rem, env(safe-area-inset-bottom));
+}
+
+.doctor-shell {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 /* Public appointment / shareable booking page */
@@ -304,8 +323,35 @@ button:disabled,
   }
 }
 
+@media (max-width: 767px) {
+  .btn,
+  .btn-primary,
+  .btn-ghost,
+  .btn-soft {
+    min-height: 2.35rem;
+    padding: 0.55rem 0.85rem;
+  }
+
+  .input {
+    font-size: 16px; /* avoid iOS zoom on focus */
+    padding: 0.65rem 0.8rem;
+  }
+
+  .toolbar {
+    width: 100%;
+  }
+
+  .toolbar > .btn,
+  .toolbar > .btn-primary,
+  .toolbar > .btn-ghost,
+  .toolbar > .btn-soft {
+    flex: 1 1 auto;
+  }
+}
+
 @media print {
   .no-print { display: none !important; }
+  .mobile-tabbar { display: none !important; }
   body { background: white; }
   .card { box-shadow: none; border: none; }
 }

@@ -49,8 +49,8 @@ export default function Profile() {
 
   return (
     <div className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
-      <form className="card space-y-4 p-5" onSubmit={save}>
-        <h1 className="text-2xl font-extrabold text-[var(--navy)]">Profile & clinic settings</h1>
+      <form className="card space-y-4 p-4 sm:p-5" onSubmit={save}>
+        <h1 className="text-xl font-extrabold text-[var(--navy)] sm:text-2xl">Profile & clinic settings</h1>
         <p className="text-sm text-[var(--muted)]">These details appear on your prescription pad and public appointment page.</p>
         <div className="grid gap-3 md:grid-cols-2">
           {[

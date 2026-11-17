@@ -61,7 +61,7 @@ export default function AppointmentCalendar({
               disabled={disabled}
               onClick={() => onSelectDate(key)}
               className={[
-                'relative flex h-10 flex-col items-center justify-center rounded-xl text-sm font-semibold transition',
+                'relative flex h-11 flex-col items-center justify-center rounded-xl text-sm font-semibold transition sm:h-10',
                 !inMonth ? 'text-slate-300' : '',
                 past && inMonth ? 'cursor-not-allowed text-slate-300' : '',
                 !past && inMonth && !hasSlots ? 'cursor-not-allowed text-slate-400' : '',
